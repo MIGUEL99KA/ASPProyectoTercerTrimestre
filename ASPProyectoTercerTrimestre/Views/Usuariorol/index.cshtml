@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ASPProyectoTercerTrimestre.Models.usuariorol>
+
+@{
+    ViewBag.Title = "index";
+}
+
+<h2>index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idRol)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @ASPProyectoTercerTrimestre.Controllers.UsuariorolController.NombreUsuario(item.idUsuario)
+            </td>
+            <td>
+                @ASPProyectoTercerTrimestre.Controllers.UsuariorolController.NombreRoles(item.idRol)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id }, new {@class = "linkDelete" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section scripts{
+    <script>
+        $(".linkDelete").click(function (event) {
+            if (!confirm('¿Esta seguro de Eliminar?')) {
+                event.preventDefault();
+            }
+        })
+    </script>
+}
