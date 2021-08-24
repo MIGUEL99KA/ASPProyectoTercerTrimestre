@@ -7,32 +7,30 @@ using ASPProyectoTercerTrimestre.Models;
 
 namespace ASPProyectoTercerTrimestre.Controllers
 {
-    public class ProductoController : Controller
+    public class Producto_imagenController : Controller
     {
-        // GET: Producto
+        // GET: Producto_imagen
         public ActionResult Index()
         {
-            using(var db = new inventario2021Entities())
+            using (var db = new inventario2021Entities())
             {
-                return View(db.producto.ToList());
-            }
-            
-        }
-
-        public static string NombreProveedor(int idProveedor)
-        {
-            using(var db = new inventario2021Entities())
-            {
-                return db.proveedor.Find(idProveedor).nombre;
+                return View(db.producto_imagen.ToList());
             }
         }
 
-
-        public ActionResult ListarProveedores()
+        public static string NombreProducto(int idproducto)
         {
-            using(var db = new inventario2021Entities())
+            using (var db = new inventario2021Entities())
             {
-                return PartialView(db.proveedor.ToList());
+                return db.producto.Find(idproducto).nombre;
+            }
+        }
+
+        public ActionResult ListarProductos()
+        {
+            using (var db = new inventario2021Entities())
+            {
+                return PartialView(db.producto.ToList());
             }
         }
 
@@ -44,7 +42,7 @@ namespace ASPProyectoTercerTrimestre.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Create(producto producto)
+        public ActionResult Create(producto_imagen producto_imagen)
         {
             if (!ModelState.IsValid)
                 return View();
@@ -53,7 +51,7 @@ namespace ASPProyectoTercerTrimestre.Controllers
             {
                 using (var db = new inventario2021Entities())
                 {
-                    db.producto.Add(producto);
+                    db.producto_imagen.Add(producto_imagen);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -64,43 +62,41 @@ namespace ASPProyectoTercerTrimestre.Controllers
                 return View();
             }
         }
-    
+
         public ActionResult Details(int id)
         {
-            using(var db = new inventario2021Entities())
+            using (var db = new inventario2021Entities())
             {
-                return View(db.producto.Find(id));
+                return View(db.producto_imagen.Find(id));
             }
         }
-        
+
         public ActionResult Edit(int id)
         {
-            using(var db = new inventario2021Entities())
+            using (var db = new inventario2021Entities())
             {
-                producto productoEdit = db.producto.Where(a => a.id == id).FirstOrDefault();
-                return View(productoEdit);
+                producto_imagen producto_imagenEdit = db.producto_imagen.Where(a => a.id == id).FirstOrDefault();
+                return View(producto_imagenEdit);
             }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Edit(producto productoEdit)
+        public ActionResult Edit(producto_imagen producto_imagenEdit)
         {
             try
             {
-                using(var db = new inventario2021Entities())
+                using (var db = new inventario2021Entities())
                 {
-                    var oldproduct = db.producto.Find(productoEdit.id);
-                    oldproduct.nombre = productoEdit.nombre;
-                    oldproduct.cantidad = productoEdit.cantidad;
-                    oldproduct.descripcion = productoEdit.descripcion;
-                    oldproduct.percio_unitario = productoEdit.percio_unitario;
-                    oldproduct.id_proveedor = productoEdit.id_proveedor;
+                    var oldproduct = db.producto_imagen.Find(producto_imagenEdit.id);
+                    oldproduct.imagen = producto_imagenEdit.imagen;
+                    oldproduct.id_producto = producto_imagenEdit.id_producto;
                     db.SaveChanges();
                     return RedirectToAction("index");
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "error" + ex);
                 return View();
@@ -111,14 +107,15 @@ namespace ASPProyectoTercerTrimestre.Controllers
         {
             try
             {
-                using(var db = new inventario2021Entities())
+                using (var db = new inventario2021Entities())
                 {
-                    producto producto = db.producto.Find(id);
-                    db.producto.Remove(producto);
+                    producto_imagen producto_imagen = db.producto_imagen.Find(id);
+                    db.producto_imagen.Remove(producto_imagen);
                     db.SaveChanges();
                     return RedirectToAction("index");
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "error" + ex);
                 return View();
@@ -126,5 +123,5 @@ namespace ASPProyectoTercerTrimestre.Controllers
         }
     }
 
-    
+
 }

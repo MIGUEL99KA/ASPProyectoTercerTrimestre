@@ -131,6 +131,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
+    <Compile Include="Controllers\Producto_imagenController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\PruebaController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
@@ -259,6 +260,13 @@
     <Content Include="Views\Producto\index.cshtml" />
     <Content Include="Views\Producto\Create.cshtml" />
     <Content Include="Views\Producto\ListarProveedores.cshtml" />
+    <Content Include="Views\Producto\Details.cshtml" />
+    <Content Include="Views\Producto\Edit.cshtml" />
+    <Content Include="Views\Producto_imagen\index.cshtml" />
+    <Content Include="Views\Producto_imagen\Create.cshtml" />
+    <Content Include="Views\Producto_imagen\ListarProductos.cshtml" />
+    <Content Include="Views\Producto_imagen\Details.cshtml" />
+    <Content Include="Views\Producto_imagen\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
