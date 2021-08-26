@@ -288,6 +288,7 @@
     <Content Include="Views\Producto_compra\Create.cshtml" />
     <Content Include="Views\Producto_compra\Details.cshtml" />
     <Content Include="Views\Producto_compra\Edit.cshtml" />
+    <Content Include="Views\Usuario\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
