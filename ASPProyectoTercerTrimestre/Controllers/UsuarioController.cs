@@ -9,9 +9,9 @@ using System.Text;
 
 namespace ASPProyectoTercerTrimestre.Controllers
 {
-    [Authorize]
     public class UsuarioController : Controller
     {
+        [Authorize]
         // GET: Usuario
         public ActionResult Index()
         {
@@ -174,7 +174,7 @@ namespace ASPProyectoTercerTrimestre.Controllers
         public ActionResult CloseSession()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index","Home");
         }
     }
 }
