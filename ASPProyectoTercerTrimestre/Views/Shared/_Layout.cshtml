@@ -24,7 +24,10 @@
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
                     <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Ingresar", "Login", "Usuario")</li>
+                    @if (User.Identity.IsAuthenticated == false)
+                    {
+                        <li>@Html.ActionLink("Ingresar", "Login", "Usuario")</li>
+                    }
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="dropdown">
@@ -44,16 +47,16 @@
                                 <li>@Html.ActionLink("Producto_Compra", "Index", "Producto_compra")</li>
                                 <li>@Html.ActionLink("Usuario_Rol", "Index", "UsuarioRol")</li>
                                 <li>@Html.ActionLink("Cuenta", "Cuenta", "Producto_compra")</li>
-                                
+
 
                             </ul>
                         </li>
                     }
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li>@Html.ActionLink("Cerrar Cesion", "CloseSession", "Usuario")</li>
-                        }
-                    </ul>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Cerrar Cesion", "CloseSession", "Usuario")</li>
+                    }
+                </ul>
             </div>
         </div>
     </div>
