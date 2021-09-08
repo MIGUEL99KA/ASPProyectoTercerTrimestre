@@ -130,5 +130,30 @@ namespace ASPProyectoTercerTrimestre.Controllers
                 return View();
             }
         }
+
+        public ActionResult Cuenta()
+        {
+            try
+            {
+                var db = new inventario2021Entities();
+                var Query = from tabCliente in db.cliente
+                            join tabCompra in db.compra on tabCliente.id equals tabCompra.id_cliente
+                            join tabProducto_compra in db.producto_compra on tabCompra.id equals tabProducto_compra.id_compra
+                            join tabProducto in db.producto on tabProducto_compra.id equals tabProducto.id
+                            select new Cuenta
+                            {
+                                NombreCliente = tabCliente.nombre,
+                                DocumentoCliente = tabCliente.documento,
+                                NombreProducto = tabProducto.nombre,
+                                PrecioProducto = tabProducto.percio_unitario,
+                                CantidadProducto = tabProducto.cantidad
+                            };
+                return View(Query);
+            }catch(Exception ex)
+            {
+                ModelState.AddModelError("", "Error" + ex);
+                return View();
+            }
+        }
     }
 }

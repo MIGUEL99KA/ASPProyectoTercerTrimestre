@@ -11,7 +11,8 @@ namespace ASPProyectoTercerTrimestre.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class producto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,10 +23,16 @@ namespace ASPProyectoTercerTrimestre.Models
         }
     
         public int id { get; set; }
+        [Required]
+        [StringLength(10)]
         public string nombre { get; set; }
+        [Required]
         public int percio_unitario { get; set; }
+        [Required]
         public string descripcion { get; set; }
+        [Required]
         public int cantidad { get; set; }
+        [Required]
         public int id_proveedor { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

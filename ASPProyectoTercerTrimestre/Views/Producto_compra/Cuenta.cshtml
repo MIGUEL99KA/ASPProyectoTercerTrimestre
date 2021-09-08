@@ -1,0 +1,28 @@
+﻿@model IEnumerable<ASPProyectoTercerTrimestre.Models.Cuenta>
+
+@{
+    ViewBag.Title = "Cuenta";
+}
+
+<h2>Cuenta</h2>
+
+<table class="table">
+    <tr>
+        <th>Cliente</th>
+        <th>Documento</th>
+        <th>Producto</th>
+        <th>Precio Unitario</th>
+        <th>Cantidad</th>
+    </tr>
+    @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(ModelItem => item.NombreCliente)</td>
+                    <td>@Html.DisplayFor(ModelItem => item.DocumentoCliente)</td>
+                    <td>@Html.DisplayFor(ModelItem => item.NombreProducto)</td>
+                    <td>@Html.DisplayFor(ModelItem => item.PrecioProducto)</td>
+                    <td>@Html.DisplayFor(ModelItem => item.CantidadProducto)</td>
+
+                </tr>
+            }
+</table>

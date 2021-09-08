@@ -11,7 +11,8 @@ namespace ASPProyectoTercerTrimestre.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class compra
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,9 +22,14 @@ namespace ASPProyectoTercerTrimestre.Models
         }
     
         public int id { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
         public System.DateTime fecha { get; set; }
+        [Required]
         public int total { get; set; }
+        [Required]
         public int id_usuario { get; set; }
+        [Required]
         public int id_cliente { get; set; }
     
         public virtual cliente cliente { get; set; }
