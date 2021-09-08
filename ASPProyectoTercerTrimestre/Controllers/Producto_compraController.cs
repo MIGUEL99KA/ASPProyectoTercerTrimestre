@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ASPProyectoTercerTrimestre.Models;
+using Rotativa;
 
 namespace ASPProyectoTercerTrimestre.Controllers
 {
@@ -149,11 +150,17 @@ namespace ASPProyectoTercerTrimestre.Controllers
                                 CantidadProducto = tabProducto.cantidad
                             };
                 return View(Query);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "Error" + ex);
                 return View();
             }
+
+        }
+        public ActionResult PdfCuenta()
+        {
+            return new ActionAsPdf("Cuenta") { FileName = "Cuenta.pdf" };
         }
     }
 }
