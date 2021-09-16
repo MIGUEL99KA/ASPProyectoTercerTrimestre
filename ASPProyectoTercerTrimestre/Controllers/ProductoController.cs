@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ASPProyectoTercerTrimestre.Models;
+using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using ASPProyectoTercerTrimestre.Models;
 
 namespace ASPProyectoTercerTrimestre.Controllers
 {
@@ -13,16 +11,16 @@ namespace ASPProyectoTercerTrimestre.Controllers
         // GET: Producto
         public ActionResult Index()
         {
-            using(var db = new inventario2021Entities())
+            using (var db = new inventario2021Entities())
             {
                 return View(db.producto.ToList());
             }
-            
+
         }
 
         public static string NombreProveedor(int idProveedor)
         {
-            using(var db = new inventario2021Entities())
+            using (var db = new inventario2021Entities())
             {
                 return db.proveedor.Find(idProveedor).nombre;
             }
@@ -31,7 +29,7 @@ namespace ASPProyectoTercerTrimestre.Controllers
 
         public ActionResult ListarProveedores()
         {
-            using(var db = new inventario2021Entities())
+            using (var db = new inventario2021Entities())
             {
                 return PartialView(db.proveedor.ToList());
             }
@@ -65,18 +63,18 @@ namespace ASPProyectoTercerTrimestre.Controllers
                 return View();
             }
         }
-    
+
         public ActionResult Details(int id)
         {
-            using(var db = new inventario2021Entities())
+            using (var db = new inventario2021Entities())
             {
                 return View(db.producto.Find(id));
             }
         }
-        
+
         public ActionResult Edit(int id)
         {
-            using(var db = new inventario2021Entities())
+            using (var db = new inventario2021Entities())
             {
                 producto productoEdit = db.producto.Where(a => a.id == id).FirstOrDefault();
                 return View(productoEdit);
@@ -90,7 +88,7 @@ namespace ASPProyectoTercerTrimestre.Controllers
         {
             try
             {
-                using(var db = new inventario2021Entities())
+                using (var db = new inventario2021Entities())
                 {
                     var oldproduct = db.producto.Find(productoEdit.id);
                     oldproduct.nombre = productoEdit.nombre;
@@ -101,7 +99,8 @@ namespace ASPProyectoTercerTrimestre.Controllers
                     db.SaveChanges();
                     return RedirectToAction("index");
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "error" + ex);
                 return View();
@@ -112,14 +111,15 @@ namespace ASPProyectoTercerTrimestre.Controllers
         {
             try
             {
-                using(var db = new inventario2021Entities())
+                using (var db = new inventario2021Entities())
                 {
                     producto producto = db.producto.Find(id);
                     db.producto.Remove(producto);
                     db.SaveChanges();
                     return RedirectToAction("index");
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "error" + ex);
                 return View();
@@ -127,5 +127,5 @@ namespace ASPProyectoTercerTrimestre.Controllers
         }
     }
 
-    
+
 }

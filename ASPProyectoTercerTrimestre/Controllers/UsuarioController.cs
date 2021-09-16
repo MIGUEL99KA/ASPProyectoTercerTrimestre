@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ASPProyectoTercerTrimestre.Models;
+using System;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using ASPProyectoTercerTrimestre.Models;
 using System.Web.Security;
-using System.Text;
 
 namespace ASPProyectoTercerTrimestre.Controllers
 {
@@ -44,7 +44,8 @@ namespace ASPProyectoTercerTrimestre.Controllers
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "error " + ex);
                 return View();
@@ -78,14 +79,15 @@ namespace ASPProyectoTercerTrimestre.Controllers
         {
             try
             {
-                using(var db = new inventario2021Entities())
+                using (var db = new inventario2021Entities())
                 {
                     var findUser = db.usuario.Find(id);
                     db.usuario.Remove(findUser);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "error " + ex);
                 return View();
@@ -96,12 +98,13 @@ namespace ASPProyectoTercerTrimestre.Controllers
         {
             try
             {
-                using(var db = new inventario2021Entities())
+                using (var db = new inventario2021Entities())
                 {
                     usuario findUser = db.usuario.Where(a => a.id == id).FirstOrDefault();
                     return View(findUser);
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "error " + ex);
                 return View();
@@ -128,14 +131,15 @@ namespace ASPProyectoTercerTrimestre.Controllers
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "error " + ex);
                 return View();
             }
         }
 
-        public ActionResult Login( string mensaje = "")
+        public ActionResult Login(string mensaje = "")
         {
             ViewBag.Message = mensaje;
             return View();
@@ -152,7 +156,7 @@ namespace ASPProyectoTercerTrimestre.Controllers
                 using (var db = new inventario2021Entities())
                 {
                     var userLogin = db.usuario.FirstOrDefault(e => e.email == user && e.password == passEncrip);
-                    if(userLogin != null)
+                    if (userLogin != null)
                     {
                         FormsAuthentication.SetAuthCookie(userLogin.email, true);
                         Session["User"] = userLogin;
@@ -174,7 +178,10 @@ namespace ASPProyectoTercerTrimestre.Controllers
         public ActionResult CloseSession()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
+
+
+
     }
 }
