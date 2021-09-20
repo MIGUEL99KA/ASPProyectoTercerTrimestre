@@ -203,6 +203,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ImagenesCSS\interface.jpg" />
+    <Content Include="ImagenesCSS\Logo.png" />
+    <Content Include="ImagenesCSS\Logo2.jpg" />
+    <Content Include="ImagenesCSS\LogoEjemplo.jpg" />
+    <Content Include="ImagenesCSS\Persona.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
