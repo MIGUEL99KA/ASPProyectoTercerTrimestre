@@ -1,0 +1,47 @@
+﻿body {
+    background-color: gray;
+    color: orange;
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: white !important;
+}
+
+.navbar-inverse .navbar-brand {
+    color: orange;
+}
+
+a{
+    color: white;
+}
+
+.jumbotron {
+    color: orange;
+    background: darkgrey;
+}
+
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 6px 30px;
+}
+
+.btn-default {
+    color: white;
+    background-color: initial;
+    border-color: black;
+}
+
+nav > li > a {
+    position: relative;
+    display: block;
+    padding: 16px 30px;
+}
+
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 17px 30px;
+}
