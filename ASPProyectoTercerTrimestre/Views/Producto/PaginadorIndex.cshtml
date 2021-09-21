@@ -1,0 +1,26 @@
+﻿@model ASPProyectoTercerTrimestre.Models.ProductoIndex
+
+
+@{
+    ViewBag.Title = "PaginadorIndex";
+}
+
+<h2>PaginadorIndex</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>Nombre </th>
+        <th>Precio Unitario</th>
+        <th>Cantidad</th>
+    </tr>
+    @foreach (var producto in Model.Producto)
+    {
+        <tr>
+            <td>@producto.nombre</td>
+            <td>@producto.percio_unitario</td>
+            <td>@producto.cantidad</td>
+        </tr>
+    }
+</table>
+
+@{ Html.RenderPartial("Paginador", Model); }

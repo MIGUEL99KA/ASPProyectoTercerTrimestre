@@ -2,6 +2,8 @@
 using System;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Security;
+using System.Web.Routing;
 
 namespace ASPProyectoTercerTrimestre.Controllers
 {
@@ -122,6 +124,35 @@ namespace ASPProyectoTercerTrimestre.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError("", "error" + ex);
+                return View();
+            }
+        }
+
+        public ActionResult PaginadorIndex(int pagina = 1)
+        {
+            try
+            {
+                var CantidadRegistros = 5;
+
+                using (var db = new inventario2021Entities())
+                {
+                    var producto = db.producto.OrderBy(x => x.id).Skip((pagina - 1) * CantidadRegistros).Take(CantidadRegistros).ToList();
+
+                    var totalRegistros = db.producto.Count();
+                    var modelo = new ProductoIndex();
+                    modelo.Producto = producto;
+                    modelo.Actualpage = pagina;
+                    modelo.Total = totalRegistros;
+                    modelo.Recordspage = CantidadRegistros;
+                    modelo.valueQueryString = new RouteValueDictionary();
+
+                    return View(modelo);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "error " + ex);
                 return View();
             }
         }
