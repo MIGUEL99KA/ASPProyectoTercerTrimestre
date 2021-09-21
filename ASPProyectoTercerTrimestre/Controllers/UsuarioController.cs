@@ -6,6 +6,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.Routing;
 
 namespace ASPProyectoTercerTrimestre.Controllers
 {
@@ -179,6 +180,34 @@ namespace ASPProyectoTercerTrimestre.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult PaginadorIndex(int pagina = 1)
+        {
+            try
+            {
+                var CantidadRegistros = 5;
+
+                using (var db = new inventario2021Entities())
+                {
+                    var usuarios = db.usuario.OrderBy(x => x.id).Skip((pagina - 1) * CantidadRegistros).Take(CantidadRegistros).ToList();
+
+                    var totalRegistros = db.usuario.Count();
+                    var modelo = new UsuarioIndex();
+                    modelo.Usuarios = usuarios;
+                    modelo.Actualpage = pagina;
+                    modelo.Total = totalRegistros;
+                    modelo.Recordspage = CantidadRegistros;
+                    modelo.valueQueryString = new RouteValueDictionary();
+
+                    return View(modelo);
+
+                }
+            }catch(Exception ex)
+            {
+                ModelState.AddModelError("", "error " + ex);
+                return View();
+            }
         }
 
 
