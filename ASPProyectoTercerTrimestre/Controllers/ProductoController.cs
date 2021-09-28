@@ -70,7 +70,14 @@ namespace ASPProyectoTercerTrimestre.Controllers
         {
             using (var db = new inventario2021Entities())
             {
-                return View(db.producto.Find(id));
+                var producto = db.producto.Find(id);
+
+                //conu+sultando de la tabla producto_imagen las imagenes del producto
+                var imagen = db.producto_imagen.Where(e => e.id_producto == producto.id).FirstOrDefault();
+                //pasando la ruta a la vista
+                ViewBag.imagen = imagen.imagen;
+
+                return View(producto);
             }
         }
 

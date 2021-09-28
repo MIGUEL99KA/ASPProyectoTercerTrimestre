@@ -17,11 +17,6 @@ a{
     color: white;
 }
 
-.jumbotron {
-    color: orange;
-    background: darkgrey;
-}
-
 .nav > li > a {
     position: relative;
     display: block;
@@ -56,4 +51,15 @@ nav > li > a {
     background-image: none;
     border: 1px solid gray;
 
+}
+
+.jumbotron {
+    color: azure !important;
+    background: darkgray;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: orange !important;
+    border-color: orange !important;
 }
